@@ -1,6 +1,5 @@
 # img-convert
-========
-Crossplatform converter for images. Requires [ImageMagick](https://www.imagemagick.org/script/download.php) installed.
+Crossplatform converter for images. Requires [ImageMagick](https://www.imagemagick.org/script/download.php) installed and added to PATH.
 
 Install
 --------
@@ -8,7 +7,9 @@ Install
 
 Syntax
 --------
-`require('img-convert')(imgPath, targetPath[, params])`
+```javascript
+require('img-convert')(imgPath, targetPath[, params])
+```
 
 `imgPath`  <string>  path to image file for conversion
 
@@ -19,15 +20,16 @@ Syntax
 Returns `Promise` which fulfills to `targetPath`.
 
 Optionally you can specify the path for ImageMagick binary:
-`require('img-convert').path = "path/to/converter"`
-
+```javascript
+require('img-convert').path = "path/to/converter"
+```
 Usage
 --------
 ```javascript
 const imgConvert = require('img-convert')
-imgConvert('/mnt/d/picture.png', '/mnt/d/thumbs/small_picture.gif', { resample: 96, resize: '50%' })
-	.then(targetPath => {
-		console.log(targetPath)  // '/mnt/d/thumbs/small_picture.gif'
-	})
-	.catch(console.log.bind(console))
+imgConvert('~/picture.png', '~/thumbs/small_picture.gif', { resample: 96, resize: '50%' })
+  .then(targetPath => {
+    console.log(targetPath)  // '/mnt/d/thumbs/small_picture.gif'
+  })
+  .catch(console.log.bind(console))
 ```
