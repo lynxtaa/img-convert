@@ -1,16 +1,24 @@
 {
   "name": "img-convert",
   "version": "1.0.0",
-  "description": "Converts image using ImageMagick",
+  "description": "Converts images using ImageMagick CLI",
   "main": "lib/img-convert.js",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0"
+  },
   "scripts": {
     "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lynxtaa/img-convert.git"
+  },
   "author": "Alex Kondratyuk <lynxtaa@gmail.com>",
   "license": "ISC",
-  "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-preset-es2015": "^6.24.0"
-  }
+  "bugs": {
+    "url": "https://github.com/lynxtaa/img-convert/issues"
+  },
+  "homepage": "https://github.com/lynxtaa/img-convert#readme"
 }

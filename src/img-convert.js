@@ -1,9 +1,6 @@
-const promisify = fn => (...args) => new Promise((resolve, reject) => {
-	args.push((err, data) => err ? reject(err) : resolve(data))
-	fn(...args)
+const exec = command => new Promise((resolve, reject) => {
+	require('child_process').exec(command, (err, data) => err ? reject(err) : resolve(data))
 })
-
-const exec = promisify(require('child_process').exec)
 
 class ExecParams {
 	constructor(params) {
@@ -19,7 +16,8 @@ class ExecParams {
 
 module.exports = function(src, target, params={}) {
 	const execParams = new ExecParams(params)
-	return exec(`${exports.path} ${src} ${execParams} ${target}`).then(() => target)
+	const binPath = exports.path.includes(' ') ? `"${exports.path}"` : exports.path
+	return exec(`${binPath} "${src}" ${execParams} "${target}"`).then(() => target)
 }
 
 exports.path = require('os').platform() == 'linux' ? 'convert' : 'magick'

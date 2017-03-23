@@ -1,5 +1,7 @@
 # img-convert
-Crossplatform converter for images. Requires [ImageMagick](https://www.imagemagick.org/script/download.php) installed and added to PATH.
+Simple crossplatform converter for images.
+
+Requires [ImageMagick](https://www.imagemagick.org/script/download.php) installed and added to PATH.
 
 Install
 --------
@@ -11,11 +13,11 @@ Syntax
 require('img-convert')(imgPath, targetPath[, params])
 ```
 
-`imgPath`  <string>  path to image file for conversion
+- `imgPath`  *`<string>`* path to image file for conversion
 
-`targetPath`  <string>  path to converted image file
+- `targetPath`  *`<string>`*  path to converted image file
 
-`params`  <object>  contains [execution parameters](https://www.imagemagick.org/script/convert.php)
+- `params` *`<object>`* contains [execution parameters](https://www.imagemagick.org/script/convert.php)
 
 Returns `Promise` which fulfills to `targetPath`.
 
