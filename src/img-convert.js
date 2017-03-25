@@ -1,4 +1,4 @@
-const exec = command => new Promise((resolve, reject) => {
+const exec = (command='') => new Promise((resolve, reject) => {
 	require('child_process').exec(command, (err, data) => err ? reject(err) : resolve(data))
 })
 
@@ -14,10 +14,12 @@ class ExecParams {
 	}
 }
 
-module.exports = function(src, target, params={}) {
+function convert(src, target, params={}) {
 	const execParams = new ExecParams(params)
-	const binPath = exports.path.includes(' ') ? `"${exports.path}"` : exports.path
+	const binPath = convert.path.includes(' ') ? `"${convert.path}"` : convert.path
 	return exec(`${binPath} "${src}" ${execParams} "${target}"`).then(() => target)
 }
 
-exports.path = require('os').platform() == 'linux' ? 'convert' : 'magick'
+convert.path = require('os').platform() == 'linux' ? 'convert' : 'magick'
+
+module.exports = convert
