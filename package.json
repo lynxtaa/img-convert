@@ -22,7 +22,7 @@
   "scripts": {
     "build": "npm run test && npm run clean && babel src -d dist",
     "clean": "rimraf ./dist",
-    "preversion": "npm run build && git add -A && git commit -m \"Update dist\"",
+    "preversion": "npm run build && git add -A && git commit --allow-empty -m \"Update dist\"",
     "lint": "eslint src/.",
     "pretest": "npm run lint",
     "test": "mocha"
