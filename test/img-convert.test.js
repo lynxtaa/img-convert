@@ -1,7 +1,8 @@
 const fs = require('fs')
+const {execSync} = require('child_process')
 const {expect} = require('chai')
 const {join} = require('path')
-const imgConvert = require('../lib/img-convert')
+const imgConvert = require('../src/img-convert')
 
 const getPath = (...paths) => join(__dirname, 'images', ...paths)
 
@@ -11,10 +12,18 @@ const remove = path => new Promise((resolve, reject) => {
 
 const cleanUp = (filePath, callback) => [
 	() => remove(filePath).then(callback).catch(callback),
-	err => remove(filePath).then(() => callback(err)).catch(callback),
+	err => callback(err),
 ]
 
 describe('Test converting', () => {
+	before(function() {
+		try {
+			execSync(`${imgConvert.path} -v`)
+		} catch (err) {
+			this.skip()
+		}
+	})
+
 	it('converts file', done => {
 		const targetPath = getPath('npm.gif')
 
